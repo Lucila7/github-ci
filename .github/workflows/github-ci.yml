@@ -37,4 +37,11 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Step 3 Execute collection
-        run: newman run ./test.json -e ./dev.json --reprte
+        run: newman run ./viacep-ci.json -e ./viacep-env.json --reporters cli, -r htmlextra --reporter-htmlextra-export ./results/Report.html
+
+      # Runs a set of commands using the runners shell
+      - name: Step 4 Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: ./results/Report.html
